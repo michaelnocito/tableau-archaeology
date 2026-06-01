@@ -1,0 +1,24 @@
+{
+  "name": "tableau-archaeology",
+  "version": "0.1.0",
+  "description": "A day-in-the-life data-analyst job sim for learning Tableau.",
+  "main": "academy.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelnocito/tableau-archaeology.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/michaelnocito/tableau-archaeology/issues"
+  },
+  "homepage": "https://github.com/michaelnocito/tableau-archaeology#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}
