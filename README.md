@@ -38,14 +38,15 @@ end: they're *you on day one*.)
 | Wave | Skill | Habit |
 |---|---|---|
 | W1 ✅ | Orient the inherited workbook | **Find the real source first** |
-| W2 | Fix the aggregation | Summed an average / wrong grain |
-| W3 | Fix the misleading chart | 12-slice pie / truncated axis |
-| W4 | De-clutter the dashboard | Kill the chartjunk |
-| W5 (boss) | The board ask | Clarify + sanity-check → **the reveal** |
+| W2 ✅ | Fix the aggregation | Read the math — an ID isn't a quantity |
+| W3 ✅ | Fix the misleading chart | Start the axis at zero |
+| W4 ✅ | De-clutter the dashboard | Kill the chartjunk |
+| W5 ✅ (boss) | The board ask | Clarify + verify → **the reveal** |
 
-**First vertical slice is built end-to-end:** M1 + M2 in the Academy and W1 on
-the job — the full loop, gradual release, pull-only help, the Predecessor's
-voice, celebrations, and the curriculum drawer.
+**Built end-to-end:** all 10 Academy modules (M1–M10) and all 5 job waves
+(W1–W5, ending in the Predecessor reveal) — the full loop, gradual release,
+pull-only help, the Predecessor's voice, celebrations, and the curriculum
+drawer. Verified headless (`npx playwright test`, 5 specs green).
 
 ## Run it
 
