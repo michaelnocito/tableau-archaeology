@@ -74,3 +74,53 @@ test("select_option renders clickable choices over a Tableau viz mockup (M1)", a
   await page.locator(".option-card").first().click();
   await expect(page.locator("#a-primary")).toBeEnabled();
 });
+
+test("every listed onboarding module is authored & playable — no locked gaps", async ({ page }) => {
+  watchErrors(page);
+  await page.goto(FILE_URL);
+  const data = await page.evaluate(() => ({
+    planLen: ACADEMY_PLAN.length,
+    builtCount: ACADEMY_PLAN.filter((d) => d.built).length,
+    lessonsLen: LESSONS.length,
+    // Every plan entry marked built must have a matching authored lesson by day.
+    missing: ACADEMY_PLAN.filter((d) => d.built && !LESSONS.some((l) => l.day === d.day))
+      .map((d) => d.day),
+    // Every authored lesson must have the practice reps the player walks through.
+    badShape: LESSONS.filter((l) =>
+      !l.concept || !l.ask || !l.mentor_intro || !l.teach || !Array.isArray(l.practice) || l.practice.length === 0
+    ).map((l) => l.id)
+  }));
+  expect(data.planLen, "syllabus should list all 10 modules").toBe(10);
+  expect(data.builtCount, "all 10 listed modules should be marked built").toBe(10);
+  expect(data.lessonsLen, "all 10 modules should be authored in LESSONS").toBe(10);
+  expect(data.missing, "no built module should be missing its lesson (locked gap)").toEqual([]);
+  expect(data.badShape, "every lesson should have ask/intro/teach/practice").toEqual([]);
+});
+
+test("modules chain M1 → … → M10 → Job via each outro's Next link", async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto(FILE_URL);
+  await page.evaluate(() => { window.DEV_AUTOREVEAL = true; });
+  await page.getByRole("button", { name: /Start Module 1/i }).click();
+
+  // Walk the natural chain: solveStep follows each outro's link to the next
+  // module (or graduates at the end). Record which module number we're on each
+  // time we're in the Academy, so we can prove all 10 are reached, in order.
+  const seen = [];
+  let reachedJob = false;
+  for (let i = 0; i < 400; i++) {
+    if (await page.locator("#job-screen").isVisible()) { reachedJob = true; break; }
+    const title = await page.locator("#a-brief-title").textContent();
+    const m = title && title.match(/Module\s+(\d+)/i);
+    if (m) {
+      const n = Number(m[1]);
+      if (seen[seen.length - 1] !== n) seen.push(n);
+    }
+    await page.evaluate(() => window.Academy.dev.solveStep());
+  }
+
+  expect(reachedJob, "the chain should graduate into the Job after the last module").toBe(true);
+  // Every module 1..10 should have been visited, and in ascending order.
+  expect(seen, "each module should link to the next, 1 through 10").toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  expect(errors, "no runtime errors while chaining through all modules").toEqual([]);
+});
