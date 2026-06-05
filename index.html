@@ -3,127 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light" />
-  <title>Getting It Wrong Gets You There Faster — Tableau</title>
-  <meta name="description" content="A day-in-the-life data-analyst job sim for learning Tableau. Train in the boot camp, then de-curse an inherited workbook on the job. Getting it wrong gets you there faster." />
-  <link rel="stylesheet" href="styles.css" />
+  <title>Moved — Analyst Job Simulator (Tableau track)</title>
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://michaelnocito.github.io/spreadsheet-archaeology/tableau/" />
+  <meta http-equiv="refresh" content="0; url=https://michaelnocito.github.io/spreadsheet-archaeology/tableau/" />
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#eef1f5;color:#2b3038;
+         display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;text-align:center;padding:24px}
+    a{color:#2f6df0;font-weight:700}
+  </style>
 </head>
 <body>
-  <!-- Phase-aware orientation bar (both screens share it) -->
-  <header class="topbar">
-    <div class="brand">
-      <a href="https://michaelnocito.github.io/" title="Back to Michael Nocito's portfolio" style="display:inline-flex;align-items:center;text-decoration:none;font-size:13px;font-weight:700;color:#5b6470;white-space:nowrap;margin-right:2px;">←&nbsp;Home</a>
-      <span class="logo">▦</span>
-      <div class="brand-text">
-        <strong>Getting It Wrong Gets You There Faster</strong>
-        <span class="sub">Tableau Archaeology</span>
-      </div>
-    </div>
-    <div class="orient">
-      <span id="phase-chip" class="phase-chip phase-academy">ACADEMY</span>
-      <span class="habit-chip">🎯 <span id="habit">—</span></span>
-      <div class="progress-wrap">
-        <span id="wave-count" class="wave-count">—</span>
-        <span id="progress" class="progress"></span>
-      </div>
-    </div>
-  </header>
-
-  <!-- SCREEN 0: WELCOME / LANDING (filled by welcome.js) -->
-  <div id="welcome-screen"></div>
-
-  <!-- SCREEN 1: THE ACADEMY (filled by academy.js) -->
-  <div id="academy-screen" hidden></div>
-
-  <!-- SCREEN 2: THE JOB (the Predecessor's cursed drive) -->
-  <div id="job-screen" hidden>
-    <main class="stage">
-      <aside class="rail">
-        <!-- BRIEF first: stakeholder-style task brief, reads as the directive. -->
-        <section class="brief-card brief-job">
-          <div class="brief-eyebrow-row">
-            <span class="brief-eyebrow">📋 Task brief</span>
-            <button id="job-restart" class="brief-restart" type="button" title="Start this file over from the beginning">↺ Restart file</button>
-          </div>
-          <h2 id="job-brief-title" class="brief-title">Cursed file</h2>
-          <div id="job-brief-stage" class="brief-stage">On the job</div>
-          <!-- ALWAYS VISIBLE: the ask (stakeholder request) → the directive -->
-          <div id="job-brief-ask" class="brief-ask" hidden></div>
-          <p id="job-brief-task" class="brief-task" hidden></p>
-          <!-- COLLAPSIBLE: steps & context -->
-          <details id="job-brief-more" class="brief-more">
-            <summary class="brief-more-summary"><span class="more-label">Steps &amp; context</span></summary>
-            <div class="brief-more-body">
-              <p id="task-prompt" class="brief-prompt"></p>
-              <p id="job-brief-recall" class="brief-recall" hidden></p>
-              <div id="job-brief-checklist-wrap" hidden>
-                <div class="brief-sublabel">Your checklist</div>
-                <ol id="job-brief-checklist" class="brief-checklist"></ol>
-              </div>
-              <p class="file-line">📄 Open: <span id="filename" class="filename">—</span></p>
-              <div id="job-brief-tip" class="brief-tip" hidden></div>
-            </div>
-          </details>
-        </section>
-
-        <section class="voice">
-          <div class="voice-head">
-            <span class="avatar">🫥</span>
-            <div>
-              <strong>The Predecessor</strong>
-              <span class="role">analyst before you</span>
-            </div>
-          </div>
-          <div id="predecessor-body" class="voice-body mood-intro is-clamped"></div>
-          <button id="predecessor-toggle" class="voice-toggle" type="button" hidden>Show more ▾</button>
-        </section>
-      </aside>
-
-      <section class="work">
-        <div class="work-head">
-          <span class="tab">📊 <span class="tab-name">workbook</span></span>
-          <span id="job-work-hint" class="hint-muted"></span>
-        </div>
-        <div id="sheet" class="sheet"></div>
-        <div id="feedback" class="feedback" hidden></div>
-        <!-- Help sits below the table — close to where the player is working. -->
-        <section class="help help-inline">
-          <button id="help-btn" class="help-btn">🆘 Ask the Predecessor for backup</button>
-          <ul id="help-list" class="help-list"></ul>
-        </section>
-        <div class="action-row">
-          <button id="primary" class="primary" disabled>Confirm →</button>
-        </div>
-        <div id="slice-note" class="slice-note" hidden>
-          <strong>✅ End of the first slice.</strong>
-          You learned the Tableau canvas and dimensions vs measures in the boot
-          camp, then oriented the Predecessor's cursed workbook on the job. More
-          modules and files are on the way — you've left this one better than you
-          found it. That's the whole job.
-        </div>
-      </section>
-    </main>
+  <div>
+    <p>The Tableau track has moved into the <strong>Analyst Job Simulator</strong>.</p>
+    <p>Redirecting… or <a href="https://michaelnocito.github.io/spreadsheet-archaeology/tableau/">open it here →</a></p>
   </div>
-
-  <footer class="foot">
-    <span>Getting it wrong gets you there faster.</span>
-    <span class="build">Build: <span id="build-ts">—</span></span>
-  </footer>
-
-  <script>window.BUILD_TS = "Jun 1, 2026 · Tableau — full M1–M10 + W1–W5 · progress tracking";
-    window.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("build-ts").textContent = window.BUILD_TS;
-    });
-  </script>
-  <script src="core.js"></script>
-  <script src="celebrate.js"></script>
-  <script src="progress.js"></script>
-  <script src="lessons.js"></script>
-  <script src="waves.js"></script>
-  <script src="welcome.js"></script>
-  <script src="academy.js"></script>
-  <script src="engine.js"></script>
-  <script src="curriculum.js"></script>
-  <script src="app.js"></script>
 </body>
 </html>
